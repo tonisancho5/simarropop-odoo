@@ -1,0 +1,226 @@
+<odoo>
+  <data>
+    <!-- vistas tree -->
+
+    <record model="ir.ui.view" id="simarropop.usuario_tree">
+      <field name="name">Lista de usuarios de Simarropop</field>
+      <field name="model">res.partner</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="apellidos"/>
+          <field name="ubicacion"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- vistas form -->
+
+    <record model="ir.ui.view" id="simarropop.usuario_form">
+      <field name="name">Usuarios list</field>
+      <field name="model">res.partner</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name" />
+              <field name="avatar" widget="image" />
+              <field name="contrasenya" />
+              <field name="is_user" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="simarropop.usuario_partner_form">
+      <field name="name">Usuarios list</field>
+      <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+
+        <notebook colspan="4" position="inside">
+          <page string="Simarropop">
+            <group>
+              <field name="avatar" widget="image" />
+              <field name="contrasenya" />
+              <field name="is_user" />
+            </group>
+          </page>
+        </notebook>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="simarropop.articulo_form">
+      <field name="name">Articulo list</field>
+      <field name="model">simarropop.articulo</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <group>
+                <field name="titulo" />
+                <field name="fotos" widget="image" />
+              </group>
+              <group>
+                <field name="likes" />
+                <field name="descripcion" />
+                <field name="precio" />
+                <field name="estado" />
+                <field name="usuario" />
+                <field name="categoria" />
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- vistes kanban -->
+    <record model="ir.ui.view" id="simarropop.usuario_kanban">
+      <field name="name">Usuarios list kanban</field>
+      <field name="model">res.partner</field>
+      <field name="arch" type="xml">
+        <kanban>
+          <field name="name" />
+          <field name="id" />
+          <field name="avatar" />
+
+          <templates>
+            <t t-name="kanban-box">
+              <div t-attf-class="oe_kanban_card o_kanban_record_has_image_fill ">
+                <div class="o_kanban_image_fill_left o_kanban_image_full d-none d-md-block"
+                  t-attf-style="background-image:url('#{kanban_image('res.partner',
+                     'image_1920', record.id.value, placeholder)}')"></div>
+
+                <div class="oe_kanban_details d-flex flex-column">
+                  <a type="open">
+                    <h4 class="o_kanban_record_title oe_partner_heading">
+                      <field name="name" />
+                    </h4>
+                  </a>
+                  <ul>
+                    <li>
+                      name:
+                      <field name="name" />
+                    </li>
+                    <li>
+                      password:
+                      <field name="contrasenya" />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="simarropop.articulo_kanban">
+      <field name="name">Articulo list kanban</field>
+      <field name="model">simarropop.articulo</field>
+      <field name="arch" type="xml">
+        <kanban>
+          <field name="titulo" />
+          <field name="id" />
+          <field name="likes" />
+          <field name="descripcion" />
+          <field name="precio" />
+          <field name="estado" />
+          <field name="usuario" />
+          <field name="fotos" />
+          <field name="categoria" />
+
+          <templates>
+            <t t-name="kanban-box">
+              <div t-attf-class="oe_kanban_card o_kanban_record_has_image_fill ">
+                <div class="o_kanban_image_fill_left o_kanban_image_full d-none d-md-block"
+                  t-attf-style="background-image:url('#{kanban_image('simarropop.articulo',
+                     'avatar', record.id.value, placeholder)}')"></div>
+
+                <div class="oe_kanban_details d-flex flex-column">
+                  <a type="open">
+                    <h4 class="o_kanban_record_title oe_partner_heading">
+                      <field name="titulo" />
+                    </h4>
+                  </a>
+                  <ul>
+                    <li>
+                      precio:
+                      <field name="precio" />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <!-- vistes search -->
+
+    <record model="ir.ui.view" id="simarropop.usuario_search">
+      <field name="name">Empires Of Legends user search</field>
+      <field name="model">res.partner</field>
+      <field name="priority" eval="17"/>
+      <field name="arch" type="xml">
+        <search>
+          <filter name="user_partner" string="Is user" domain="[('is_user','=',True)]" />
+          <field name="name" />
+        </search>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="simarropop.action_usuario_window">
+      <field name="name">Simarropop usuarios window</field>
+      <field name="res_model">res.partner</field>
+      <field name="view_mode">kanban,tree,form</field>
+      <field name="domain"></field>
+      <field name="search_view_id" ref="simarropop.usuario_search"></field>
+      <field name="context">{'default_is_user': True, 'search_default_usuario_partner': 1}</field>
+      <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('simarropop.usuario_tree')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('simarropop.usuario_form')}),]" />
+    </record>
+
+    <record model="ir.actions.act_window" id="simarropop.action_articulo_window">
+      <field name="name">Simarropop territories window</field>
+      <field name="res_model">simarropop.articulo</field>
+      <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="simarropop.action_server">
+      <field name="name">simarropop server</field>
+      <field name="model_id" ref="model_simarropop_simarropop"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+
+    <menuitem name="simarropop" id="simarropop.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Menu Simarropop" id="simarropop.database" parent="simarropop.menu_root"/>
+
+    <!-- actions -->
+
+    <menuitem name="Usuarios" id="simarropop.usuario_list" parent="simarropop.database"
+      action="simarropop.action_usuario_window" />
+
+  </data>
+</odoo>
