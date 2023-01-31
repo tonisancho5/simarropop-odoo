@@ -14,6 +14,62 @@
       </field>
     </record>
 
+    <record model="ir.ui.view" id="simarropop.articulo_tree">
+      <field name="name">Lista de usuarios de Simarropop</field>
+      <field name="model">simarropop.articulo</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="titulo"/>
+          <field name="likes"/>
+          <field name="precio"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="simarropop.foto_tree">
+      <field name="name">Lista de fotos de Simarropop</field>
+      <field name="model">simarropop.foto</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="articulo"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="simarropop.valoracion_tree">
+      <field name="name">Lista de valoraciones de Simarropop</field>
+      <field name="model">simarropop.valoracion</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="estrellas"/>
+          <field name="usuarioEmisor"/>
+          <field name="usuarioReceptor"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="simarropop.mensaje_tree">
+      <field name="name">Lista de mensajes de Simarropop</field>
+      <field name="model">simarropop.mensaje</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="hora" />
+          <field name="usuarioEmisor" />
+          <field name="usuarioReceptor" />
+        </tree>
+      </field>
+    </record>
+    
+    <record model="ir.ui.view" id="simarropop.categoria_tree">
+      <field name="name">Lista de categorias de Simarropop</field>
+      <field name="model">simarropop.categoria</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="tipo"/>
+        </tree>
+      </field>
+    </record>
+
     <!-- vistas form -->
 
     <record model="ir.ui.view" id="simarropop.usuario_form">
@@ -26,7 +82,14 @@
               <field name="name" />
               <field name="avatar" widget="image" />
               <field name="contrasenya" />
-              <field name="is_user" />
+              <field name="apellidos" />
+              <field name="ubicacion" />
+              <field name="correo" />
+              <field name="articulos" />
+              <field name="valoracionesEmisor" />
+              <field name="valoracionesReceptor" />
+              <field name="mensajesEmisor" />
+              <field name="mensajesReceptor" />
             </group>
           </sheet>
         </form>
@@ -70,6 +133,70 @@
                 <field name="usuario" />
                 <field name="categoria" />
               </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="simarropop.foto_form">
+      <field name="name">Fotos list</field>
+      <field name="model">simarropop.foto</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="imagen" />
+              <field name="articulo" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="simarropop.valoracion_form">
+      <field name="name">Valoraciones list</field>
+      <field name="model">simarropop.valoracion</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="estrellas" />
+              <field name="opinion" />
+              <field name="usuarioEmisor" />
+              <field name="usuarioReceptor" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="simarropop.mensaje_form">
+      <field name="name">Mensajes list</field>
+      <field name="model">simarropop.mensaje</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="contenido" />
+              <field name="hora" />
+              <field name="usuarioEmisor" />
+              <field name="usuarioReceptor" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="simarropop.categoria_form">
+      <field name="name">Categorias list</field>
+      <field name="model">simarropop.categoria</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="tipo" />
+              <field name="articulos" />
             </group>
           </sheet>
         </form>
@@ -188,9 +315,33 @@
     </record>
 
     <record model="ir.actions.act_window" id="simarropop.action_articulo_window">
-      <field name="name">Simarropop territories window</field>
+      <field name="name">Simarropop articulos window</field>
       <field name="res_model">simarropop.articulo</field>
-      <field name="view_mode">kanban,tree,form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="simarropop.action_foto_window">
+      <field name="name">Simarropop fotos window</field>
+      <field name="res_model">simarropop.foto</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="simarropop.action_valoracion_window">
+      <field name="name">Simarropop valoraciones window</field>
+      <field name="res_model">simarropop.valoracion</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="simarropop.action_mensaje_window">
+      <field name="name">Simarropop mensajes window</field>
+      <field name="res_model">simarropop.mensaje</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="simarropop.action_categoria_window">
+      <field name="name">Simarropop categorias window</field>
+      <field name="res_model">simarropop.categoria</field>
+      <field name="view_mode">tree,form</field>
     </record>
 
     <!-- server action to the one above -->
@@ -221,6 +372,17 @@
 
     <menuitem name="Usuarios" id="simarropop.usuario_list" parent="simarropop.database"
       action="simarropop.action_usuario_window" />
+    <menuitem name="Articulos" id="simarropop.articulo_list" parent="simarropop.database"
+      action="simarropop.action_articulo_window" />
+    <menuitem name="Fotos" id="simarropop.foto_list" parent="simarropop.database"
+      action="simarropop.action_foto_window" />
+    <menuitem name="Valoraciones" id="simarropop.valoracion_list" parent="simarropop.database"
+      action="simarropop.action_valoracion_window" />
+    <menuitem name="Mensajes" id="simarropop.mensaje_list" parent="simarropop.database"
+      action="simarropop.action_mensaje_window" />
+    <menuitem name="Categorias" id="simarropop.categoria_list" parent="simarropop.database"
+      action="simarropop.action_categoria_window" />
+
 
   </data>
 </odoo>
