@@ -42,8 +42,8 @@
       <field name="arch" type="xml">
         <tree>
           <field name="estrellas"/>
-          <field name="usuarioEmisor"/>
-          <field name="usuarioReceptor"/>
+          <field name="usuario_emisor"/>
+          <field name="usuario_receptor"/>
         </tree>
       </field>
     </record>
@@ -54,8 +54,8 @@
       <field name="arch" type="xml">
         <tree>
           <field name="hora" />
-          <field name="usuarioEmisor" />
-          <field name="usuarioReceptor" />
+          <field name="usuario_emisor" />
+          <field name="usuario_receptor" />
         </tree>
       </field>
     </record>
@@ -85,7 +85,8 @@
               <field name="apellidos" />
               <field name="ubicacion" />
               <field name="correo" />
-              <field name="articulos" />
+              <field name="articulosComprados" />
+              <field name="articulosVendidos" />
               <field name="valoracionesEmisor" />
               <field name="valoracionesReceptor" />
               <field name="mensajesEmisor" />
@@ -130,7 +131,9 @@
                 <field name="descripcion" />
                 <field name="precio" />
                 <field name="estado" />
-                <field name="usuario" />
+                <field name="vendido" />
+                <field name="usuario_comprador" />
+                <field name="usuario_vendedor" />
                 <field name="categoria" />
               </group>
             </group>
@@ -163,8 +166,8 @@
             <group>
               <field name="estrellas" />
               <field name="opinion" />
-              <field name="usuarioEmisor" />
-              <field name="usuarioReceptor" />
+              <field name="usuario_emisor" />
+              <field name="usuario_receptor" />
             </group>
           </sheet>
         </form>
@@ -180,8 +183,8 @@
             <group>
               <field name="contenido" />
               <field name="hora" />
-              <field name="usuarioEmisor" />
-              <field name="usuarioReceptor" />
+              <field name="usuario_emisor" />
+              <field name="usuario_receptor" />
             </group>
           </sheet>
         </form>
@@ -255,7 +258,8 @@
           <field name="descripcion" />
           <field name="precio" />
           <field name="estado" />
-          <field name="usuario" />
+          <field name="usuario_comprador" />
+          <field name="usuario_vendedor" />
           <field name="fotos" />
           <field name="categoria" />
 
