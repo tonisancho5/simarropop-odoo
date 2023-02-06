@@ -14,21 +14,22 @@ class usuario(models.Model):
     contrasenya = fields.Char()
     avatar = fields.Image(max_width=200, max_height=200)
     is_user = fields.Boolean(default=False)
-    articulosComprados = fields.One2many('simarropop.articulo', 'usuario_comprador')
-    articulosVendidos = fields.One2many('simarropop.articulo', 'usuario_vendedor')
+    articulosComprados = fields.One2many('sale.order', 'usuario_comprador')
+    articulosVendidos = fields.One2many('sale.order', 'usuario_vendedor')
     valoracionesEmisor = fields.One2many('simarropop.valoracion', 'usuario_emisor')
     valoracionesReceptor = fields.One2many('simarropop.valoracion', 'usuario_receptor')
     mensajesEmisor = fields.One2many('simarropop.mensaje', 'usuario_emisor')
     mensajesReceptor = fields.One2many('simarropop.mensaje', 'usuario_receptor')
 
 class articulo(models.Model):
-    _name = 'simarropop.articulo'
+    _name = 'sale.order'
     _description = 'Articulo'
+    _inherit = 'sale.order'
 
-    titulo = fields.Char(required=True)
-    likes = fields.Integer()
+    titulo = fields.Char()
+    likes = fields.Integer(default=0)
     descripcion = fields.Char()
-    precio = fields.Float(required=True)
+    precio = fields.Float()
     estado = fields.Char() #buen estado, mal estado, casi nuevo, etc.
     vendido = fields.Boolean(default=False)
     usuario_comprador = fields.Many2one('res.partner',ondelete="cascade")
@@ -41,7 +42,7 @@ class foto(models.Model):
     _description = 'Foto'
 
     imagen = fields.Image(max_width=200, max_height=200, required=True)
-    articulo = fields.Many2one('simarropop.articulo',ondelete="cascade")
+    articulo = fields.Many2one('sale.order',ondelete="cascade")
 
 class valoracion(models.Model):
     _name = 'simarropop.valoracion'
@@ -66,5 +67,5 @@ class categoria(models.Model):
     _description = 'Categoria'
 
     tipo = fields.Char()
-    articulos = fields.One2many('simarropop.articulo', 'categoria')
+    articulos = fields.One2many('sale.order', 'categoria')
     

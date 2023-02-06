@@ -16,7 +16,7 @@
 
     <record model="ir.ui.view" id="simarropop.articulo_tree">
       <field name="name">Lista de usuarios de Simarropop</field>
-      <field name="model">simarropop.articulo</field>
+      <field name="model">sale.order</field>
       <field name="arch" type="xml">
         <tree>
           <field name="titulo"/>
@@ -117,7 +117,7 @@
 
     <record model="ir.ui.view" id="simarropop.articulo_form">
       <field name="name">Articulo list</field>
-      <field name="model">simarropop.articulo</field>
+      <field name="model">sale.order</field>
       <field name="arch" type="xml">
         <form>
           <sheet>
@@ -249,7 +249,7 @@
 
     <record model="ir.ui.view" id="simarropop.articulo_kanban">
       <field name="name">Articulo list kanban</field>
-      <field name="model">simarropop.articulo</field>
+      <field name="model">sale.order</field>
       <field name="arch" type="xml">
         <kanban>
           <field name="titulo" />
@@ -320,7 +320,7 @@
 
     <record model="ir.actions.act_window" id="simarropop.action_articulo_window">
       <field name="name">Simarropop articulos window</field>
-      <field name="res_model">simarropop.articulo</field>
+      <field name="res_model">sale.order</field>
       <field name="view_mode">tree,form</field>
     </record>
 
