@@ -85,6 +85,7 @@
               <field name="apellidos" />
               <field name="ubicacion" />
               <field name="correo" />
+              <field name="is_user" />
               <field name="articulosComprados" />
               <field name="articulosVendidos" />
               <field name="valoracionesEmisor" />
@@ -115,30 +116,23 @@
       </field>
     </record>
 
-    <record model="ir.ui.view" id="simarropop.articulo_form">
-      <field name="name">Articulo list</field>
+    
+
+    <record model="ir.ui.view" id="simarropop.articulo_sale_form">
+      <field name="name">Articulos list</field>
       <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
       <field name="arch" type="xml">
-        <form>
-          <sheet>
+
+        <notebook position="inside">
+          <page string="Simarropop">
             <group>
-              <group>
-                <field name="titulo" />
-                <field name="fotos" widget="image" />
-              </group>
-              <group>
-                <field name="likes" />
-                <field name="descripcion" />
-                <field name="precio" />
-                <field name="estado" />
-                <field name="vendido" />
-                <field name="usuario_comprador" />
-                <field name="usuario_vendedor" />
-                <field name="categoria" />
-              </group>
+              <field name="titulo" />
+              <field name="descripcion" />
+              <field name="precio" />
             </group>
-          </sheet>
-        </form>
+          </page>
+        </notebook>
       </field>
     </record>
 

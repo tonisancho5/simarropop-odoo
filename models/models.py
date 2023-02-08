@@ -13,7 +13,7 @@ class usuario(models.Model):
     correo = fields.Char()
     contrasenya = fields.Char()
     avatar = fields.Image(max_width=200, max_height=200)
-    is_user = fields.Boolean(default=False)
+    is_user = fields.Boolean(default=True)
     articulosComprados = fields.One2many('sale.order', 'usuario_comprador')
     articulosVendidos = fields.One2many('sale.order', 'usuario_vendedor')
     valoracionesEmisor = fields.One2many('simarropop.valoracion', 'usuario_emisor')
