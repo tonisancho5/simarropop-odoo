@@ -116,7 +116,6 @@
       </field>
     </record>
 
-    
 
     <record model="ir.ui.view" id="simarropop.articulo_sale_form">
       <field name="name">Articulos list</field>
@@ -380,7 +379,6 @@
       action="simarropop.action_mensaje_window" />
     <menuitem name="Categorias" id="simarropop.categoria_list" parent="simarropop.database"
       action="simarropop.action_categoria_window" />
-
 
   </data>
 </odoo>

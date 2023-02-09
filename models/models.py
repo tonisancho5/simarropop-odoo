@@ -2,7 +2,6 @@
 
 from odoo import models, fields, api
 
-
 class usuario(models.Model):
     _name = 'res.partner'
     _description = 'Usuario'
@@ -26,23 +25,24 @@ class articulo(models.Model):
     _description = 'Articulo'
     _inherit = 'sale.order'
 
+    name = fields.Char(default="not even a name")
     titulo = fields.Char()
     likes = fields.Integer(default=0)
     descripcion = fields.Char()
     precio = fields.Float()
     estado = fields.Char() #buen estado, mal estado, casi nuevo, etc.
     vendido = fields.Boolean(default=False)
-    usuario_comprador = fields.Many2one('res.partner',ondelete="cascade")
-    usuario_vendedor = fields.Many2one('res.partner',ondelete="cascade")
+    usuario_comprador = fields.Many2one('res.partner')
+    usuario_vendedor = fields.Many2one('res.partner')
     fotos = fields.One2many('simarropop.foto', 'articulo')
-    categoria = fields.Many2one('simarropop.categoria',ondelete="cascade")
+    categoria = fields.Many2one('simarropop.categoria')
 
 class foto(models.Model):
     _name = 'simarropop.foto'
     _description = 'Foto'
 
-    imagen = fields.Image(max_width=200, max_height=200, required=True)
-    articulo = fields.Many2one('sale.order',ondelete="cascade")
+    imagen = fields.Image(max_width=200, max_height=200)
+    articulo = fields.Many2one('sale.order')
 
 class valoracion(models.Model):
     _name = 'simarropop.valoracion'
@@ -50,8 +50,8 @@ class valoracion(models.Model):
 
     estrellas = fields.Integer(required=True) #valor del 1-5
     opinion = fields.Char()
-    usuario_emisor = fields.Many2one('res.partner',ondelete="cascade")
-    usuario_receptor = fields.Many2one('res.partner',ondelete="cascade")
+    usuario_emisor = fields.Many2one('res.partner')
+    usuario_receptor = fields.Many2one('res.partner')
 
 class mensaje(models.Model):
     _name = 'simarropop.mensaje'
@@ -59,8 +59,8 @@ class mensaje(models.Model):
 
     contenido = fields.Char()
     hora = fields.Datetime()
-    usuario_emisor = fields.Many2one('res.partner',ondelete="cascade")
-    usuario_receptor = fields.Many2one('res.partner',ondelete="cascade")
+    usuario_emisor = fields.Many2one('res.partner')
+    usuario_receptor = fields.Many2one('res.partner')
 
 class categoria(models.Model):
     _name = 'simarropop.categoria'
@@ -68,4 +68,3 @@ class categoria(models.Model):
 
     tipo = fields.Char()
     articulos = fields.One2many('sale.order', 'categoria')
-    
