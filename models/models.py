@@ -25,7 +25,6 @@ class articulo(models.Model):
     _description = 'Articulo'
     _inherit = 'sale.order'
 
-    name = fields.Char(default="not even a name")
     titulo = fields.Char()
     likes = fields.Integer(default=0)
     descripcion = fields.Char()

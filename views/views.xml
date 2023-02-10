@@ -101,9 +101,8 @@
     <record model="ir.ui.view" id="simarropop.usuario_partner_form">
       <field name="name">Usuarios list</field>
       <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="inherit_id" ref="base.view_partner_form"/>
       <field name="arch" type="xml">
-
         <notebook colspan="4" position="inside">
           <page string="Simarropop">
             <group>
@@ -120,15 +119,23 @@
     <record model="ir.ui.view" id="simarropop.articulo_sale_form">
       <field name="name">Articulos list</field>
       <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="priority" eval="17"/>
       <field name="arch" type="xml">
 
         <notebook position="inside">
           <page string="Simarropop">
             <group>
               <field name="titulo" />
+              <field name="likes" />
               <field name="descripcion" />
               <field name="precio" />
+              <field name="estado" />
+              <field name="vendido" />
+              <field name="usuario_comprador" />
+              <field name="usuario_vendedor" />
+              <field name="fotos" />
+              <field name="categoria" />
             </group>
           </page>
         </notebook>
