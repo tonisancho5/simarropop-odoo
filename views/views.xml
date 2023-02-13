@@ -41,6 +41,7 @@
       <field name="model">simarropop.valoracion</field>
       <field name="arch" type="xml">
         <tree>
+          <field name="id" />
           <field name="estrellas"/>
           <field name="usuario_emisor"/>
           <field name="usuario_receptor"/>
@@ -115,12 +116,33 @@
       </field>
     </record>
 
+    <record model="ir.ui.view" id="simarropop.articulo_form">
+      <field name="name">Articulos list</field>
+      <field name="model">sale.order</field>
+      <field name="priority" eval="17"/>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="titulo" />
+              <field name="likes" />
+              <field name="descripcion" />
+              <field name="precio" />
+              <field name="estado" />
+              <field name="vendido" />
+              <field name="usuario_comprador" />
+              <field name="usuario_vendedor" />
+              <field name="categoria" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
 
     <record model="ir.ui.view" id="simarropop.articulo_sale_form">
       <field name="name">Articulos list</field>
       <field name="model">sale.order</field>
       <field name="inherit_id" ref="sale.view_order_form"/>
-      <field name="priority" eval="17"/>
       <field name="arch" type="xml">
 
         <notebook position="inside">
@@ -322,6 +344,9 @@
       <field name="name">Simarropop articulos window</field>
       <field name="res_model">sale.order</field>
       <field name="view_mode">tree,form</field>
+      <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('simarropop.articulo_tree')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('simarropop.articulo_form')}),]" />
     </record>
 
     <record model="ir.actions.act_window" id="simarropop.action_foto_window">
