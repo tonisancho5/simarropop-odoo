@@ -88,6 +88,8 @@
               <field name="ubicacion" />
               <field name="correo" />
               <field name="is_user" />
+              <field name="articulosComprados_qty" />
+              <field name="articulosVendidos_qty" />
               <field name="articulosComprados" />
               <field name="articulosVendidos" />
               <field name="valoracionesEmisor" />
@@ -127,6 +129,7 @@
             <group>
               <field name="titulo" />
               <field name="likes" />
+              <field name="fotos" widget="image" />
               <field name="descripcion" />
               <field name="precio" />
               <field name="estado" />

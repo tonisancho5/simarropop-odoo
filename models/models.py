@@ -20,15 +20,26 @@ class usuario(models.Model):
     mensajesEmisor = fields.One2many('simarropop.mensaje', 'usuario_emisor')
     mensajesReceptor = fields.One2many('simarropop.mensaje', 'usuario_receptor')
 
+    articulosComprados_qty = fields.Integer(compute='_get_articulosComprados_qty', string='Cantidad articulos comprados', default=0)
+    articulosVendidos_qty = fields.Integer(compute='_get_articulosVendidos_qty', string='Cantidad articulos vendidos', default=0)
+    
+    def _get_articulosComprados_qty(self):
+        for usuario in self:
+            usuario.articulosComprados_qty = len(usuario.articulosComprados)
+
+    def _get_articulosVendidos_qty(self):
+        for usuario in self:
+            usuario.articulosVendidos_qty = len(usuario.articulosVendidos)
+
 class articulo(models.Model):
     _name = 'sale.order'
     _description = 'Articulo'
     _inherit = 'sale.order'
 
-    titulo = fields.Char()
+    titulo = fields.Char(required=True)
     likes = fields.Integer(default=0)
-    descripcion = fields.Char()
-    precio = fields.Float()
+    descripcion = fields.Char(required=True)
+    precio = fields.Float(required=True)
     estado = fields.Char() #buen estado, mal estado, casi nuevo, etc.
     vendido = fields.Boolean(default=False)
     usuario_comprador = fields.Many2one('res.partner')
@@ -36,6 +47,16 @@ class articulo(models.Model):
     fotos = fields.One2many('simarropop.foto', 'articulo')
     categoria = fields.Many2one('simarropop.categoria')
 
+    @api.onchange('precio')
+    def _verificar_precio(self):
+        if self.precio < 0:
+            return {
+                'warning': {
+                    'title': " Preu incorrecte ",
+                    'message': "El preu no pot ser negatiu",
+                    },      
+                }
+    
 class foto(models.Model):
     _name = 'simarropop.foto'
     _description = 'Foto'
@@ -52,11 +73,13 @@ class valoracion(models.Model):
     usuario_emisor = fields.Many2one('res.partner')
     usuario_receptor = fields.Many2one('res.partner')
 
+    
+
 class mensaje(models.Model):
     _name = 'simarropop.mensaje'
     _description = 'Mensaje'
 
-    contenido = fields.Char()
+    contenido = fields.Char(required=True)
     hora = fields.Datetime()
     usuario_emisor = fields.Many2one('res.partner')
     usuario_receptor = fields.Many2one('res.partner')

@@ -60,7 +60,7 @@
         <record id="simarropop.categoria_demo20" model="simarropop.categoria">
             <field name="tipo">Servicios</field>
         </record>
-        <!--
+        
         <record id="simarropop.usuario_demo1" model="res.partner">
             <field name="name">Samuel</field>
             <field name="apellidos">Giner</field>
@@ -79,8 +79,8 @@
             <field name="avatar"></field>
             <field name="is_user">True</field>
         </record>
-
-        <record id="simarropop.articulo_demo1" model="simarropop.articulo">
+        
+        <record id="simarropop.articulo_demo1" model="sale.order">
             <field name="titulo">nevera</field>
             <field name="likes">123</field>
             <field name="descripcion">oioioi sisisi</field>
@@ -611,13 +611,12 @@
                 AABJRU5ErkJggg==</field>
             <field name="articulo" ref="simarropop.articulo_demo1"></field>
         </record>
-
-        <record id="simarropop.foto_demo1" model="simarropop.valoracion">
+        
+        <record id="simarropop.valoracion_demo1" model="simarropop.valoracion">
             <field name="estrellas">4</field>
             <field name="opinion">ke vien ke ba la neberra</field>
             <field name="usuario_emisor" ref="simarropop.usuario_demo1"></field>
             <field name="usuario_receptor" ref="simarropop.usuario_demo2"></field>
         </record>
-        -->
     </data>
 </odoo>
