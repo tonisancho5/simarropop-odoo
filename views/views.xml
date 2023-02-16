@@ -14,10 +14,10 @@
         </tree>
       </field>
     </record>
-
+    
     <record model="ir.ui.view" id="simarropop.articulo_tree">
       <field name="name">Lista de usuarios de Simarropop</field>
-      <field name="model">sale.order</field>
+      <field name="model">simarropop.articulo</field>
       <field name="arch" type="xml">
         <tree>
           <field name="titulo"/>
@@ -26,13 +26,15 @@
         </tree>
       </field>
     </record>
-
+  
     <record model="ir.ui.view" id="simarropop.foto_tree">
       <field name="name">Lista de fotos de Simarropop</field>
       <field name="model">simarropop.foto</field>
       <field name="arch" type="xml">
         <tree>
+          
           <field name="articulo"/>
+        
         </tree>
       </field>
     </record>
@@ -121,7 +123,7 @@
 
     <record model="ir.ui.view" id="simarropop.articulo_form">
       <field name="name">Articulos list</field>
-      <field name="model">sale.order</field>
+      <field name="model">simarropop.articulo</field>
       <field name="priority" eval="17"/>
       <field name="arch" type="xml">
         <form>
@@ -142,7 +144,7 @@
         </form>
       </field>
     </record>
-
+    <!-- 
     <record model="ir.ui.view" id="simarropop.articulo_sale_form">
       <field name="name">Articulos list</field>
       <field name="model">sale.order</field>
@@ -167,7 +169,7 @@
         </notebook>
       </field>
     </record>
-
+  -->
     <record model="ir.ui.view" id="simarropop.foto_form">
       <field name="name">Fotos list</field>
       <field name="model">simarropop.foto</field>
@@ -275,7 +277,7 @@
 
     <record model="ir.ui.view" id="simarropop.articulo_kanban">
       <field name="name">Articulo list kanban</field>
-      <field name="model">sale.order</field>
+      <field name="model">simarropop.articulo</field>
       <field name="arch" type="xml">
         <kanban>
           <field name="titulo" />
@@ -343,16 +345,16 @@
             (0, 0, {'view_mode': 'tree', 'view_id': ref('simarropop.usuario_tree')}),
             (0, 0, {'view_mode': 'form', 'view_id': ref('simarropop.usuario_form')}),]" />
     </record>
-
+    
     <record model="ir.actions.act_window" id="simarropop.action_articulo_window">
       <field name="name">Simarropop articulos window</field>
-      <field name="res_model">sale.order</field>
+      <field name="res_model">simarropop.articulo</field>
       <field name="view_mode">tree,form</field>
       <field name="view_ids" eval="[(5, 0, 0),
             (0, 0, {'view_mode': 'tree', 'view_id': ref('simarropop.articulo_tree')}),
             (0, 0, {'view_mode': 'form', 'view_id': ref('simarropop.articulo_form')}),]" />
     </record>
-
+  
     <record model="ir.actions.act_window" id="simarropop.action_foto_window">
       <field name="name">Simarropop fotos window</field>
       <field name="res_model">simarropop.foto</field>

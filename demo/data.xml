@@ -1,5 +1,7 @@
 <odoo>
+    
     <data>
+        
         <record id="simarropop.categoria_demo1" model="simarropop.categoria">
             <field name="tipo">Coches</field>
         </record>
@@ -60,7 +62,7 @@
         <record id="simarropop.categoria_demo20" model="simarropop.categoria">
             <field name="tipo">Servicios</field>
         </record>
-        
+        <!-- 
         <record id="simarropop.usuario_demo1" model="res.partner">
             <field name="name">Samuel</field>
             <field name="apellidos">Giner</field>
@@ -618,5 +620,6 @@
             <field name="usuario_emisor" ref="simarropop.usuario_demo1"></field>
             <field name="usuario_receptor" ref="simarropop.usuario_demo2"></field>
         </record>
+        -->
     </data>
 </odoo>

@@ -13,8 +13,8 @@ class usuario(models.Model):
     contrasenya = fields.Char()
     avatar = fields.Image(max_width=200, max_height=200)
     is_user = fields.Boolean(default=True)
-    articulosComprados = fields.One2many('sale.order', 'usuario_comprador')
-    articulosVendidos = fields.One2many('sale.order', 'usuario_vendedor')
+    articulosComprados = fields.One2many('simarropop.articulo', 'usuario_comprador')
+    articulosVendidos = fields.One2many('simarropop.articulo', 'usuario_vendedor')
     valoracionesEmisor = fields.One2many('simarropop.valoracion', 'usuario_emisor')
     valoracionesReceptor = fields.One2many('simarropop.valoracion', 'usuario_receptor')
     mensajesEmisor = fields.One2many('simarropop.mensaje', 'usuario_emisor')
@@ -32,9 +32,8 @@ class usuario(models.Model):
             usuario.articulosVendidos_qty = len(usuario.articulosVendidos)
 
 class articulo(models.Model):
-    _name = 'sale.order'
+    _name = 'simarropop.articulo'
     _description = 'Articulo'
-    _inherit = 'sale.order'
 
     titulo = fields.Char(required=True)
     likes = fields.Integer(default=0)
@@ -62,7 +61,7 @@ class foto(models.Model):
     _description = 'Foto'
 
     imagen = fields.Image(max_width=200, max_height=200)
-    articulo = fields.Many2one('sale.order')
+    articulo = fields.Many2one('simarropop.articulo')
 
 class valoracion(models.Model):
     _name = 'simarropop.valoracion'
@@ -72,8 +71,6 @@ class valoracion(models.Model):
     opinion = fields.Char()
     usuario_emisor = fields.Many2one('res.partner')
     usuario_receptor = fields.Many2one('res.partner')
-
-    
 
 class mensaje(models.Model):
     _name = 'simarropop.mensaje'
@@ -89,4 +86,8 @@ class categoria(models.Model):
     _description = 'Categoria'
 
     tipo = fields.Char()
-    articulos = fields.One2many('sale.order', 'categoria')
+    articulos = fields.One2many('simarropop.articulo', 'categoria')
+
+class wizard_articulo(models.TransientModel):
+     _name = 'simarropop.wizard_articulo'
+     
