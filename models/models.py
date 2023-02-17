@@ -41,9 +41,9 @@ class articulo(models.Model):
     precio = fields.Float(required=True)
     estado = fields.Char() #buen estado, mal estado, casi nuevo, etc.
     vendido = fields.Boolean(default=False)
+    foto = fields.Image(max_width=200, max_height=200)
     usuario_comprador = fields.Many2one('res.partner')
     usuario_vendedor = fields.Many2one('res.partner')
-    fotos = fields.One2many('simarropop.foto', 'articulo')
     categoria = fields.Many2one('simarropop.categoria')
 
     @api.onchange('precio')
@@ -55,13 +55,7 @@ class articulo(models.Model):
                     'message': "El preu no pot ser negatiu",
                     },      
                 }
-    
-class foto(models.Model):
-    _name = 'simarropop.foto'
-    _description = 'Foto'
 
-    imagen = fields.Image(max_width=200, max_height=200)
-    articulo = fields.Many2one('simarropop.articulo')
 
 class valoracion(models.Model):
     _name = 'simarropop.valoracion'

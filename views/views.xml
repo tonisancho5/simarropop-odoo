@@ -27,17 +27,6 @@
       </field>
     </record>
   
-    <record model="ir.ui.view" id="simarropop.foto_tree">
-      <field name="name">Lista de fotos de Simarropop</field>
-      <field name="model">simarropop.foto</field>
-      <field name="arch" type="xml">
-        <tree>
-          
-          <field name="articulo"/>
-        
-        </tree>
-      </field>
-    </record>
 
     <record model="ir.ui.view" id="simarropop.valoracion_tree">
       <field name="name">Lista de valoraciones de Simarropop</field>
@@ -131,7 +120,7 @@
             <group>
               <field name="titulo" />
               <field name="likes" />
-              <field name="fotos" widget="image" />
+              <field name="foto" widget="image" />
               <field name="descripcion" />
               <field name="precio" />
               <field name="estado" />
@@ -170,20 +159,7 @@
       </field>
     </record>
   -->
-    <record model="ir.ui.view" id="simarropop.foto_form">
-      <field name="name">Fotos list</field>
-      <field name="model">simarropop.foto</field>
-      <field name="arch" type="xml">
-        <form>
-          <sheet>
-            <group>
-              <field name="imagen" />
-              <field name="articulo" />
-            </group>
-          </sheet>
-        </form>
-      </field>
-    </record>
+    
 
     <record model="ir.ui.view" id="simarropop.valoracion_form">
       <field name="name">Valoraciones list</field>
@@ -288,7 +264,7 @@
           <field name="estado" />
           <field name="usuario_comprador" />
           <field name="usuario_vendedor" />
-          <field name="fotos" />
+          <field name="foto" />
           <field name="categoria" />
 
           <templates>
@@ -354,12 +330,6 @@
             (0, 0, {'view_mode': 'tree', 'view_id': ref('simarropop.articulo_tree')}),
             (0, 0, {'view_mode': 'form', 'view_id': ref('simarropop.articulo_form')}),]" />
     </record>
-  
-    <record model="ir.actions.act_window" id="simarropop.action_foto_window">
-      <field name="name">Simarropop fotos window</field>
-      <field name="res_model">simarropop.foto</field>
-      <field name="view_mode">tree,form</field>
-    </record>
 
     <record model="ir.actions.act_window" id="simarropop.action_valoracion_window">
       <field name="name">Simarropop valoraciones window</field>
@@ -409,8 +379,6 @@
       action="simarropop.action_usuario_window" />
     <menuitem name="Articulos" id="simarropop.articulo_list" parent="simarropop.database"
       action="simarropop.action_articulo_window" />
-    <menuitem name="Fotos" id="simarropop.foto_list" parent="simarropop.database"
-      action="simarropop.action_foto_window" />
     <menuitem name="Valoraciones" id="simarropop.valoracion_list" parent="simarropop.database"
       action="simarropop.action_valoracion_window" />
     <menuitem name="Mensajes" id="simarropop.mensaje_list" parent="simarropop.database"
