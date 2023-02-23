@@ -62,11 +62,12 @@
         <record id="simarropop.categoria_demo20" model="simarropop.categoria">
             <field name="tipo">Servicios</field>
         </record>
-        <!-- 
+        
         <record id="simarropop.usuario_demo1" model="res.partner">
             <field name="name">Samuel</field>
             <field name="apellidos">Giner</field>
-            <field name="ubicacion">Barxeta</field>
+            <field name="lon">69.69</field>
+            <field name="lat">69.69</field>
             <field name="correo">samuelginer@gmail.com</field>
             <field name="contrasenya">1234</field>
             <field name="avatar"></field>
@@ -75,27 +76,22 @@
         <record id="simarropop.usuario_demo2" model="res.partner">
             <field name="name">Toni</field>
             <field name="apellidos">Sancho</field>
-            <field name="ubicacion">Canals</field>
+            <field name="lon">69.69</field>
+            <field name="lat">69.69</field>
             <field name="correo">tonisancho@gmail.com</field>
             <field name="contrasenya">1234</field>
             <field name="avatar"></field>
             <field name="is_user">True</field>
         </record>
         
-        <record id="simarropop.articulo_demo1" model="sale.order">
+        <record id="simarropop.articulo_demo1" model="simarropop.articulo">
             <field name="titulo">nevera</field>
             <field name="likes">123</field>
             <field name="descripcion">oioioi sisisi</field>
             <field name="precio">119.99</field>
             <field name="estado">Casi nuevo</field>
             <field name="vendido">True</field>
-            <field name="usuario_comprador" ref="simarropop.usuario_demo1"></field>
-            <field name="usuario_vendedor" ref="simarropop.usuario_demo2"></field>
-            <field name="categoria" ref="simarropop.categoria_demo13"></field>
-        </record>
-    
-        <record id="simarropop.foto_demo1" model="simarropop.foto">
-            <field name="imagen">iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAByfElEQVR42ux9B3xUVfb/TSaTZNJ7
+            <field name="foto">iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAByfElEQVR42ux9B3xUVfb/TSaTZNJ7
                 L6T3SnonQOgh1BBKgEDovbckNKkS6SiCItgrlkVREVG6INX9u013dd11XV232cnv/D/nOXFRJsnM
                 vPvKzJzv5/P9rB8W5r13373nnHfvOd/DGIFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQCAQ
                 CAQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAI
@@ -611,7 +607,9 @@
                 RERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERE
                 RERERERERERERERERERERERERERERERERERERERERERERERERERERERERKS6/wPsNuh0oIm+/gAA
                 AABJRU5ErkJggg==</field>
-            <field name="articulo" ref="simarropop.articulo_demo1"></field>
+            <field name="usuario_comprador" ref="simarropop.usuario_demo1"></field>
+            <field name="usuario_vendedor" ref="simarropop.usuario_demo2"></field>
+            <field name="categoria" ref="simarropop.categoria_demo13"></field>
         </record>
         
         <record id="simarropop.valoracion_demo1" model="simarropop.valoracion">
@@ -620,6 +618,6 @@
             <field name="usuario_emisor" ref="simarropop.usuario_demo1"></field>
             <field name="usuario_receptor" ref="simarropop.usuario_demo2"></field>
         </record>
-        -->
+        
     </data>
 </odoo>

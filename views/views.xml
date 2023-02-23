@@ -10,7 +10,8 @@
           <field name="id" />
           <field name="name"/>
           <field name="apellidos"/>
-          <field name="ubicacion"/>
+          <field name="lon"/>
+          <field name="lat"/>
         </tree>
       </field>
     </record>
@@ -63,6 +64,32 @@
       </field>
     </record>
 
+    <!-- wizard -->
+
+    <record model="ir.ui.view" id="simarropop.usuario_wizard_form">
+      <field name="name">simarropop usuario wizard</field>
+      <field name="model">simarropop.usuario_wizard</field>
+      <field name="arch" type="xml">
+        <form>
+          <group>
+            <field name="avatar" widget="image"  class="oe_avatar"/>
+            <field name="name"/>
+            <field name="correo"/>
+            <field name="lon"/>
+            <field name="lat"/>
+            <field name="contrasenya" password="True"/>
+        </group>
+        <footer>
+          <button name="create_usuario" type="object"
+                  string="Create" class="oe_highlight"/>
+          <button special="cancel" string="Cancel"/>
+      </footer>
+        </form>
+      </field>
+    </record>
+
+    
+
     <!-- vistas form -->
 
     <record model="ir.ui.view" id="simarropop.usuario_form">
@@ -74,9 +101,10 @@
             <group>
               <field name="name" />
               <field name="avatar" widget="image" />
-              <field name="contrasenya" />
+              <field name="contrasenya" password="True"/>
               <field name="apellidos" />
-              <field name="ubicacion" />
+              <field name="lon" />
+              <field name="lat" />
               <field name="correo" />
               <field name="is_user" />
               <field name="articulosComprados_qty" />
@@ -101,9 +129,10 @@
         <notebook colspan="4" position="inside">
           <page string="Simarropop">
             <group>
-              <field name="avatar" widget="image" />
-              <field name="contrasenya" />
-              <field name="is_user" />
+              <button name="%(simarropop.usuario_wizard_action)d"
+                    type="action" string="Crear Usuario" class="oe_highlight" />
+              <button name="launch_usuario_wizard"
+                    type="object" string="Crear Usuario python" class="oe_highlight" />
             </group>
           </page>
         </notebook>
@@ -116,20 +145,18 @@
       <field name="priority" eval="17"/>
       <field name="arch" type="xml">
         <form>
-          <sheet>
-            <group>
-              <field name="titulo" />
-              <field name="likes" />
-              <field name="foto" widget="image" />
-              <field name="descripcion" />
-              <field name="precio" />
-              <field name="estado" />
-              <field name="vendido" />
-              <field name="usuario_comprador" />
-              <field name="usuario_vendedor" />
-              <field name="categoria" />
-            </group>
-          </sheet>
+          <group>
+            <field name="titulo" />
+            <field name="likes" />
+            <field name="foto" widget="image" />
+            <field name="descripcion" />
+            <field name="precio" />
+            <field name="estado" />
+            <field name="vendido" />
+            <field name="usuario_comprador" />
+            <field name="usuario_vendedor" />
+            <field name="categoria" />
+          </group>
         </form>
       </field>
     </record>
@@ -349,6 +376,14 @@
       <field name="view_mode">tree,form</field>
     </record>
 
+    <record id="simarropop.usuario_wizard_action" model="ir.actions.act_window">
+      <field name="name">Create Usuario</field>
+      <field name="res_model">simarropop.usuario_wizard</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+      <field name="binding_model_id" ref="base.model_res_partner"/>
+  </record>
+
     <!-- server action to the one above -->
 <!--
     <record model="ir.actions.server" id="simarropop.action_server">
@@ -385,6 +420,6 @@
       action="simarropop.action_mensaje_window" />
     <menuitem name="Categorias" id="simarropop.categoria_list" parent="simarropop.database"
       action="simarropop.action_categoria_window" />
-
+    
   </data>
 </odoo>

@@ -8,7 +8,8 @@ class usuario(models.Model):
     _inherit = 'res.partner'
 
     apellidos = fields.Char()
-    ubicacion = fields.Char()
+    lon = fields.Float(default=0)
+    lat = fields.Float(default=0)
     correo = fields.Char()
     contrasenya = fields.Char()
     avatar = fields.Image(max_width=200, max_height=200)
@@ -30,6 +31,15 @@ class usuario(models.Model):
     def _get_articulosVendidos_qty(self):
         for usuario in self:
             usuario.articulosVendidos_qty = len(usuario.articulosVendidos)
+
+    def launch_usuario_wizard(self):
+        return {
+            'name': 'Crear Usuario',
+            'type': 'ir.actions.act_window',
+            'res_model': 'simarropop.usuario_wizard',
+            'view_mode': 'form',
+            'target': 'new'
+        }
 
 class articulo(models.Model):
     _name = 'simarropop.articulo'
@@ -56,7 +66,6 @@ class articulo(models.Model):
                     },      
                 }
 
-
 class valoracion(models.Model):
     _name = 'simarropop.valoracion'
     _description = 'Valoracion'
@@ -82,6 +91,26 @@ class categoria(models.Model):
     tipo = fields.Char()
     articulos = fields.One2many('simarropop.articulo', 'categoria')
 
-class wizard_articulo(models.TransientModel):
-     _name = 'simarropop.wizard_articulo'
-     
+class usuario_wizard(models.TransientModel):
+    _name = 'simarropop.usuario_wizard'
+    _description = 'Wizard para crear usuarios'
+
+    def _default_client(self):
+        return self.env['res.partner'].browse(self._context.get('active_id'))
+    name = fields.Many2one('res.partner',default=_default_client, required=True)
+    contrasenya = fields.Char()
+    correo = fields.Char()
+    lon = fields.Float()
+    lat = fields.Float()
+    avatar = fields.Image(max_width=200, max_height=200)
+
+
+    def create_usuario(self):
+        self.ensure_one()
+        self.name.write({'contrasenya': self.contrasenya,
+                         'avatar': self.avatar,
+                         'correo': self.correo,
+                         'lon': self.lon,
+                         'lat': self.lat,
+                         'is_user': True
+                         })
